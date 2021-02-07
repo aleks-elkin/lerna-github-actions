@@ -2,7 +2,7 @@ import { ChildComponent1 } from "@aleks-elkin-test/lerna-repo.child-component-1"
 import { ChildComponent2 } from "@aleks-elkin-test/lerna-repo.child-component-2";
 export class MainComponent {
 
-	private internalId = "test";
+	private internalId = "test_monorepo";
 	private childComponent1: ChildComponent1;
 	private childComponent2: ChildComponent2;
 
