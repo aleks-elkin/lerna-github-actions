@@ -20,5 +20,8 @@
   "dependencies": {
     "@aleks-elkin-test/lerna-repo.child-component-1": "^0.1.0",
     "@aleks-elkin-test/lerna-repo.child-component-2": "^0.1.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }
