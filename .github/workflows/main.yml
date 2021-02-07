@@ -28,5 +28,8 @@ jobs:
       - name: install deps
         run: npm ci
 
+      - name: bootstrap monorepo
+        run: npm run bootstrap
+
       - name: build project
         run: npm run build
