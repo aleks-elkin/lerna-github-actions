@@ -1,0 +1,24 @@
+{
+  "name": "@aleks-elkin-test/lerna-repo.main-app-component",
+  "version": "0.1.0",
+  "description": "> TODO: description",
+  "author": "Aleksandr Elkin <aleksandr.elkin@tradeshift.com>",
+  "homepage": "",
+  "license": "ISC",
+  "main": "lib/main-app-component.js",
+  "directories": {
+    "lib": "lib",
+    "test": "__tests__"
+  },
+  "files": [
+    "lib"
+  ],
+  "scripts": {
+    "tsc": "tsc",
+    "test": "echo \"Error: run tests from root\" && exit 1"
+  },
+  "dependencies": {
+    "@aleks-elkin-test/lerna-repo.child-component-1": "^0.1.0",
+    "@aleks-elkin-test/lerna-repo.child-component-2": "^0.1.0"
+  }
+}
