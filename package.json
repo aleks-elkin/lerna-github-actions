@@ -15,7 +15,8 @@
     "typescript": "^4.1.3"
   },
   "scripts": {
-    "publish": "lerna run tsc && lerna publish",
+    "build": "lerna run tsc",
+    "publish": "npm run build && lerna publish",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "husky": {
