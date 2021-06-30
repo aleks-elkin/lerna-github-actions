@@ -1,5 +1,10 @@
 {
   "name": "@aleks-elkin-test/lerna-repo.child-component-1",
+	"repository": {
+    "type": "git",
+    "url": "https://github.com/aleks-elkin/lerna-github-actions.git",
+    "directory": "packages/child-component-1"
+  },
   "version": "0.1.2",
   "description": "> TODO: description",
   "author": "Aleksandr Elkin <aleksandr.elkin@tradeshift.com>",
