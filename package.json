@@ -17,7 +17,7 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "build": "lerna run tsc",
-    "publish": "npm run build && lerna publish",
+    "publish": "npm run build && lerna publish --conventional-commits",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "husky": {
