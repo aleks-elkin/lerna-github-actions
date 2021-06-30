@@ -21,9 +21,7 @@
     "publish:github": "lerna publish from-git --no-git-tag-version",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
-  "husky": {
-    "hooks": {
-      "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-    }
+	"publishConfig": {
+    "access": "public"
   }
 }
