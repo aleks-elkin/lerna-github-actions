@@ -28,12 +28,13 @@ jobs:
           node-version: 14
           registry-url: https://registry.npmjs.org/
       - run: npm ci
+      - run: npm run bootstrap
       - run: npm publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
   publish-gpr:
-    needs: [build, publish-npm]
+    needs: publish-npm
     runs-on: ubuntu-latest
     permissions:
       contents: read
@@ -46,6 +47,7 @@ jobs:
           registry-url: 'https://npm.pkg.github.com'
           scope: '@aleks-elkin-test'
       - run: npm ci
+      - run: npm run bootstrap
       - run: npm run publish:github
         env:
           NODE_AUTH_TOKEN: ${{ secrets.PUBLISH_GITHUB_TOKEN }}
