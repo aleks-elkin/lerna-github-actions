@@ -36,7 +36,7 @@ jobs:
           git config --global user.name "@$GITHUB_ACTOR"
       - run: npm ci
       - run: npm run bootstrap
-      - run: npm publish
+      - run: npm lerna-publish
         env:
           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
 
@@ -58,6 +58,6 @@ jobs:
           scope: '@aleks-elkin-test'
       - run: npm ci
       - run: npm run bootstrap
-      - run: npm run publish:github
+      - run: npm run lerna-publish:github
         env:
           NODE_AUTH_TOKEN: ${{ secrets.PUBLISH_GITHUB_TOKEN }}
