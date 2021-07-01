@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.1](https://github.com/aleks-elkin/lerna-github-actions/compare/v0.7.0...v0.7.1) (2021-07-01)
+
+
+### Bug Fixes
+
+* **test-lerna-repo.main-app-component:** changed main component ([d3f1cfc](https://github.com/aleks-elkin/lerna-github-actions/commit/d3f1cfc930957604a915dcd4ef060331284bb27f))
+
+
+
+
+
 # [0.7.0](https://github.com/aleks-elkin/lerna-github-actions/compare/v0.6.0...v0.7.0) (2021-07-01)
 
 
