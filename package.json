@@ -1,10 +1,10 @@
 {
-  "name": "@aleks-elkin-test/lerna-repo-root",
+  "name": "@aleks-elkin-test/lerna-repo-root-2",
   "description": "test to publish a Lerna monorepo with Github Actions",
 	"version": "0.1.2",
   "main": "index.js",
   "author": "",
-  "license": "ISC",
+  "license": "MIT",
   "dependencies": {},
   "devDependencies": {
     "@commitlint/cli": "^12.1.4",
@@ -18,14 +18,11 @@
     "bootstrap": "lerna bootstrap",
     "build": "lerna run tsc",
     "lerna-publish": "npm run build && lerna publish --conventional-commits",
-    "lerna-publish:github": "lerna publish from-git --no-git-tag-version",
+    "lerna-publish:github": "npm run build && lerna publish from-git --no-git-tag-version",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
 	"repository": {
     "type": "git",
     "url": "https://github.com/aleks-elkin/lerna-github-actions.git"
-  },
-	"publishConfig": {
-    "access": "public"
   }
 }
