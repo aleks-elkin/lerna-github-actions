@@ -1,5 +1,5 @@
 {
-  "name": "@aleks-elkin-test/lerna-repo-root-2",
+  "name": "@aleks-elkin/test-lerna-repo-root-2",
   "description": "test to publish a Lerna monorepo with Github Actions",
 	"version": "0.1.2",
   "main": "index.js",
