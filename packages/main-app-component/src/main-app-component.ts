@@ -7,7 +7,7 @@ export class MainComponent {
 	private childComponent2: ChildComponent2;
 
 	public get id() {
-		return `${this.childComponent1.id}__${this.childComponent2}`;
+		return `${this.childComponent1.id}_+_${this.childComponent2}`;
 	}
 	
 	constructor() {
