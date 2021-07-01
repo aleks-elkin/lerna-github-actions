@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.6.0](https://github.com/aleks-elkin/lerna-github-actions/compare/v0.5.0...v0.6.0) (2021-07-01)
+
+
+### Features
+
+* **lerna-repo.child-component-2:** changed second child again ([503062e](https://github.com/aleks-elkin/lerna-github-actions/commit/503062e8711b6c671e39fb7a370aeb40c62422c3))
+
+
+
+
+
 # [0.5.0](https://github.com/aleks-elkin/lerna-github-actions/compare/v0.4.0...v0.5.0) (2021-07-01)
 
 **Note:** Version bump only for package @aleks-elkin-test/lerna-repo.child-component-2
