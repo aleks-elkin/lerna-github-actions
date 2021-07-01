@@ -1,5 +1,5 @@
 {
-  "name": "@aleks-elkin-test/lerna-repo.child-component-2",
+  "name": "@aleks-elkin/test-lerna-repo.child-component-2",
   "repository": {
     "type": "git",
     "url": "https://github.com/aleks-elkin/lerna-github-actions.git",
@@ -9,7 +9,7 @@
   "description": "> TODO: description",
   "author": "Aleksandr Elkin <aleksandr.elkin@tradeshift.com>",
   "homepage": "",
-  "license": "ISC",
+  "license": "MIT",
   "main": "lib/child-component-2.js",
   "directories": {
     "lib": "lib",
