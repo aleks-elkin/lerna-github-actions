@@ -56,7 +56,7 @@ jobs:
         with:
           node-version: 14
           registry-url: 'https://npm.pkg.github.com'
-          scope: '@aleks-elkin-test'
+          scope: '@aleks-elkin'
       - run: npm ci
       - run: npm run bootstrap
       - run: npm run lerna-publish:github
