@@ -17,8 +17,8 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "build": "lerna run tsc",
-    "publish": "npm run build && lerna publish --conventional-commits",
-    "publish:github": "lerna publish from-git --no-git-tag-version",
+    "lerna-publish": "npm run build && lerna publish --conventional-commits",
+    "lerna-publish:github": "lerna publish from-git --no-git-tag-version",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
 	"repository": {
