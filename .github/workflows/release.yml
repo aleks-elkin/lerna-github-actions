@@ -11,16 +11,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-          token: ${{ secrets.PUBLISH_GITHUB_TOKEN }}
       - uses: actions/setup-node@v2
         with:
           node-version: 14
-      - name: Configure Git User
-        run: |
-          git config --global user.email "aleksandr.elkin@tradeshift.com"
-          git config --global user.name "@$GITHUB_ACTOR"
       - run: npm ci
       - run: npm run bootstrap
       - run: npm run build
@@ -30,10 +23,17 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.PUBLISH_GITHUB_TOKEN }}
       - uses: actions/setup-node@v2
         with:
           node-version: 14
           registry-url: https://registry.npmjs.org/
+      - name: Configure Git User
+        run: |
+          git config --global user.email "aleksandr.elkin@tradeshift.com"
+          git config --global user.name "@$GITHUB_ACTOR"
       - run: npm ci
       - run: npm run bootstrap
       - run: npm publish
@@ -48,6 +48,9 @@ jobs:
       packages: write
     steps:
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.PUBLISH_GITHUB_TOKEN }}
       - uses: actions/setup-node@v2
         with:
           node-version: 14
