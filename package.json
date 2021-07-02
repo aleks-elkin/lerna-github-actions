@@ -21,7 +21,8 @@
     "lerna-publish": "lerna publish --conventional-commits --no-verify-access",
     "lerna-publish:github": "lerna publish from-git --no-verify-access --no-git-tag-version",
     "publish-ci": "lerna publish from-package -y --no-verify-access",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+		"version": "lerna version --conventional-commits"
   },
   "repository": {
     "type": "git",
