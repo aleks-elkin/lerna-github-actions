@@ -11,7 +11,7 @@ export class MainComponent {
 	}
 	
 	constructor() {
-		this.childComponent1 = new ChildComponent1(this.internalId);
 		this.childComponent2 = new ChildComponent2(this.internalId);
+		this.childComponent1 = new ChildComponent1(this.internalId);
 	}
 }
