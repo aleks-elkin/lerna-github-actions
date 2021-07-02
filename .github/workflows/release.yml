@@ -1,39 +1,119 @@
-name: Release
+name: Publish Packages
 
 on:
-  # Trigger the workflow on push but only for the main branch
   push:
-    branches: [main]
+    branches:
+      - main
 
 jobs:
-  publish:
-    if: "!contains(github.event.head_commit.author.name, 'Github Actions Runner')"
+  build:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
         with:
           fetch-depth: 0
-          token: ${{ secrets.PUBLISH_GITHUB_TOKEN }}
+          token: ${{ secrets.GITHUB_TOKEN }}
       - uses: actions/setup-node@v2
         with:
           node-version: 14
           registry-url: https://registry.npmjs.org/
-      - name: Configure Git User
-        run: |
-          git config --global user.email "aleksandr.elkin+ci@tradeshift.com"
-          git config --global user.name "Github Actions Runner"
       - run: npm ci
       - run: npm run bootstrap
       - run: npm run build
-      - name: Publish to NPM
-        run: npm run lerna-publish
+
+  release:
+    name: Release
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout Repo
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: 14
+
+      - name: Install Dependencies
+        run: npm ci
+      - run: npm run bootstrap
+
+      - name: Create Release Pull Request
+        uses: changesets/action@master
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+  publish-npm:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 12
+          registry-url: https://registry.npmjs.org/
+      - run: npm ci
+      - run: npm run bootstrap
+      - run: npm build
+      - run: npm run publish-ci
+        env:
+          NODE_AUTH_TOKEN: ${{secrets.NPM_TOKEN}}
+
+  publish-gpr:
+    needs: build
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
       - uses: actions/setup-node@v2
         with:
           node-version: 14
           registry-url: 'https://npm.pkg.github.com'
           scope: '@aleks-elkin'
-      - run: npm run lerna-publish:github
+      - run: npm ci
+      - run: npm run bootstrap
+      - run: npm build
+      - run: npm run publish-ci
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.PUBLISH_GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
+
+# name: Release
+
+# on:
+#   # Trigger the workflow on push but only for the main branch
+#   push:
+#     branches: [main]
+
+# jobs:
+#   publish:
+#     if: "!contains(github.event.head_commit.author.name, 'Github Actions Runner')"
+#     runs-on: ubuntu-latest
+#     steps:
+#       - uses: actions/checkout@v2
+#         with:
+#           fetch-depth: 0
+#           token: ${{ secrets.PUBLISH_GITHUB_TOKEN }}
+#       - uses: actions/setup-node@v2
+#         with:
+#           node-version: 14
+#           registry-url: https://registry.npmjs.org/
+#       - name: Configure Git User
+#         run: |
+#           git config --global user.email "aleksandr.elkin+ci@tradeshift.com"
+#           git config --global user.name "Github Actions Runner"
+#       - run: npm ci
+#       - run: npm run bootstrap
+#       - run: npm run build
+#       - name: Publish to NPM
+#         run: npm run lerna-publish
+#         env:
+#           NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
+#       - uses: actions/setup-node@v2
+#         with:
+#           node-version: 14
+#           registry-url: 'https://npm.pkg.github.com'
+#           scope: '@aleks-elkin'
+#       - run: npm run lerna-publish:github
+#         env:
+#           NODE_AUTH_TOKEN: ${{ secrets.PUBLISH_GITHUB_TOKEN }}
