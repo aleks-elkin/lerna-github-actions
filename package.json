@@ -18,7 +18,7 @@
     "bootstrap": "lerna bootstrap",
     "build": "lerna run tsc",
     "lerna-publish": "npm run build && lerna publish --conventional-commits --no-verify-access",
-    "lerna-publish:github": "npm run build && lerna publish from-package --no-verify-access --no-git-tag-version",
+    "lerna-publish:github": "lerna publish from-git --no-verify-access --no-git-tag-version",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
