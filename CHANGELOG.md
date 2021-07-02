@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.8.1](https://github.com/aleks-elkin/lerna-github-actions/compare/v0.8.0...v0.8.1) (2021-07-02)
+
+
+### Bug Fixes
+
+* reorder stuff ([21abb27](https://github.com/aleks-elkin/lerna-github-actions/commit/21abb274d369e7c6dd9c92c1387664ae058db780))
+
+
+
+
+
 # [0.8.0](https://github.com/aleks-elkin/lerna-github-actions/compare/v0.7.3...v0.8.0) (2021-07-02)
 
 
