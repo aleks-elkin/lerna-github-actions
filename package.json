@@ -7,6 +7,7 @@
   "license": "MIT",
   "dependencies": {},
   "devDependencies": {
+    "@changesets/cli": "^2.16.0",
     "@commitlint/cli": "^12.1.4",
     "@commitlint/config-conventional": "^12.1.4",
     "@types/node": "^15.12.5",
@@ -19,7 +20,7 @@
     "build": "lerna run tsc",
     "lerna-publish": "lerna publish --conventional-commits --no-verify-access",
     "lerna-publish:github": "lerna publish from-git --no-verify-access --no-git-tag-version",
-		"publish-ci": "lerna publish from-package -y --no-verify-access",
+    "publish-ci": "lerna publish from-package -y --no-verify-access",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
