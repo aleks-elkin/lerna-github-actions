@@ -44,6 +44,7 @@ jobs:
         with:
           # this expects you to have a npm script called version that runs some logic and then calls `changeset version`.
           version: npm run version
+          commit: 'chore: version bump'
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
