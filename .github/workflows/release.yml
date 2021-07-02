@@ -6,23 +6,8 @@ on:
     branches: [main]
 
 jobs:
-
-  build:
-    runs-on: ubuntu-latest
-    steps:
-      - uses: actions/checkout@v2
-      - uses: actions/setup-node@v2
-        with:
-          node-version: 14
-      - run: npm ci
-      - run: npm run bootstrap
-      - run: npm run build
-
   publish-npm:
-    needs: build
     runs-on: ubuntu-latest
-    env:
-      NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
       - uses: actions/checkout@v2
         with:
@@ -38,27 +23,15 @@ jobs:
           git config --global user.name "@$GITHUB_ACTOR"
       - run: npm ci
       - run: npm run bootstrap
+      - name: Publish to NPM
       - run: npm run lerna-publish
-        
-
-  publish-gpr:
-    needs: publish-npm
-    runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      packages: write
-    steps:
-      - uses: actions/checkout@v2
-        with:
-          fetch-depth: 0
-          token: ${{ secrets.PUBLISH_GITHUB_TOKEN }}
+        env:
+          NODE_AUTH_TOKEN: ${{ secrets.NPM_TOKEN }}
       - uses: actions/setup-node@v2
         with:
           node-version: 14
           registry-url: 'https://npm.pkg.github.com'
           scope: '@aleks-elkin'
-      - run: npm ci
-      - run: npm run bootstrap
       - run: npm run lerna-publish:github
         env:
           NODE_AUTH_TOKEN: ${{ secrets.PUBLISH_GITHUB_TOKEN }}
