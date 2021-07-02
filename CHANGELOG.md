@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.7.3](https://github.com/aleks-elkin/lerna-github-actions/compare/v0.7.2...v0.7.3) (2021-07-02)
+
+
+### Bug Fixes
+
+* changed child component 2 ([95e5aba](https://github.com/aleks-elkin/lerna-github-actions/commit/95e5aba1b9e2a26ffd8546eb9febf3ece0a430ae))
+
+
+
+
+
 ## [0.7.2](https://github.com/aleks-elkin/lerna-github-actions/compare/v0.7.1...v0.7.2) (2021-07-02)
 
 
