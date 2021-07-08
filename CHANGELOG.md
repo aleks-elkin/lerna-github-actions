@@ -3,6 +3,20 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.14.0](https://github.com/aleks-elkin/lerna-github-actions/compare/v0.13.1...v0.14.0) (2021-07-08)
+
+
+### Features
+
+* bump again ([faa92db](https://github.com/aleks-elkin/lerna-github-actions/commit/faa92dbe81ade30eac9e80199dbd7051db288a40))
+* bump version ([4ebec4d](https://github.com/aleks-elkin/lerna-github-actions/commit/4ebec4ddb926e64391f394bbaf57f663fbc330cc))
+* bump version ([11d9c61](https://github.com/aleks-elkin/lerna-github-actions/commit/11d9c61665849611b72451277bbba1092efdfa94))
+* test new permissions ([45f2b38](https://github.com/aleks-elkin/lerna-github-actions/commit/45f2b38f4e5fe78f2ca3a6541eeffb9ccbc347d6))
+
+
+
+
+
 ## [0.13.1](https://github.com/aleks-elkin/lerna-github-actions/compare/v0.13.0...v0.13.1) (2021-07-08)
 
 
