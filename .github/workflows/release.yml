@@ -88,7 +88,7 @@ on:
   push:
     branches: [main]
     tags-ignore:
-      -v**           # Push events to tags
+      -v**.**.**           # Push events to tags
 
 jobs:
   publish:
