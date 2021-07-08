@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+## [0.13.1](https://github.com/aleks-elkin/lerna-github-actions/compare/v0.13.0...v0.13.1) (2021-07-08)
+
+
+### Bug Fixes
+
+* test new permissions ([834b8f1](https://github.com/aleks-elkin/lerna-github-actions/commit/834b8f132ccbc574281bc7a9ab53eef101ee4026))
+
+
+
+
+
 # [0.13.0](https://github.com/aleks-elkin/lerna-github-actions/compare/v0.12.1...v0.13.0) (2021-07-08)
 
 
