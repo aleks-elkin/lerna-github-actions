@@ -89,7 +89,7 @@ on:
     branches: 
       - main
     tags-ignore:
-      - '*.*'           # Push events to tags
+      - 'v**.**.**'           # Push events to tags
 
 jobs:
   publish:
