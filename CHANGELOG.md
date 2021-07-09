@@ -3,6 +3,17 @@
 All notable changes to this project will be documented in this file.
 See [Conventional Commits](https://conventionalcommits.org) for commit guidelines.
 
+# [0.22.0](https://github.com/aleks-elkin/lerna-github-actions/compare/v0.21.0...v0.22.0) (2021-07-09)
+
+
+### Features
+
+* bump version ([9c02d86](https://github.com/aleks-elkin/lerna-github-actions/commit/9c02d86d1964e6716f80c5fa10e2ae5878747c22))
+
+
+
+
+
 # [0.21.0](https://github.com/aleks-elkin/lerna-github-actions/compare/v0.20.0...v0.21.0) (2021-07-08)
 
 
