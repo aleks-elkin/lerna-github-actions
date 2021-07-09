@@ -18,11 +18,9 @@
   "scripts": {
     "bootstrap": "lerna bootstrap",
     "build": "lerna run tsc",
-    "lerna-publish:npm": "lerna publish from-git --no-verify-access --no-git-tag-version",
-    "lerna-publish:github": "lerna publish from-git --no-verify-access --no-git-tag-version",
-    "publish-ci": "lerna publish from-package -y --no-verify-access",
-    "test": "echo \"Error: no test specified\" && exit 1",
-		"lerna-version": "lerna version --conventional-commits"
+    "lerna-publish-ci": "lerna publish from-git --no-verify-access --no-git-tag-version",
+		"lerna-version": "lerna version --conventional-commits",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
     "type": "git",
