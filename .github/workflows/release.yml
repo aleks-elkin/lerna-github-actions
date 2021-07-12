@@ -80,7 +80,7 @@ jobs:
       - run: npm run bootstrap
 
       - name: Update version
-        run: npm run lerna-version --no-git-tag-version
+        run: npm run lerna-version
 
       - name: Push to GitHub
         id: push
