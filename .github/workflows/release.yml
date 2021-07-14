@@ -96,7 +96,7 @@ jobs:
             github.pulls.create({
               owner: context.repo.owner,
               repo: context.repo.repo,
-              head: "${{ steps.push.outputs.branch }}"",
+              head: "${{ steps.push.outputs.branch }}",
               base: 'main',
               body: 'new version release'
             })
