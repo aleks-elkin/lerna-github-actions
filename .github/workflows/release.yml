@@ -151,9 +151,9 @@ jobs:
         run: |
           npm run lerna-version
           version=$(node -p 'require("./lerna.json").version')
+          git add . && git commit -m "chore(release): $version"
           branch="release/$version"
           git push "https://${{ github.actor }}:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" HEAD:"$branch" --follow-tags
-          git add . && git commit -m "chore(release): $version"
       - name: Set current CHANGELOG to output
         id: changelog
         shell: bash -ex {0}
