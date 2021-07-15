@@ -150,7 +150,8 @@ jobs:
       - name: Commit new version
         run: |
           npm run lerna-version
-          git add . && git commit -m \"chore(release): publish `node -p 'require(\"./lerna.json\").version'`\"
+          version=$(node -p 'require("./lerna.json").version')
+          git add . && git commit -m "chore(release): $version"
       - name: Set current CHANGELOG to output
         id: changelog
         shell: bash -ex {0}
