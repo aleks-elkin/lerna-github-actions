@@ -80,7 +80,7 @@ jobs:
       - run: npm run bootstrap
 
       - name: Update version
-        run: npm run lerna-version
+        run: npm run lerna-version -- --no-git-tag-version --no-push
 
       - name: Push to GitHub
         id: push
@@ -89,6 +89,14 @@ jobs:
           echo $branch
           echo "::set-output name=branch::$branch"
           git push "https://aleks-elkin:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" HEAD:"$branch" --follow-tags
+
+      - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          ref: ${{ steps.push.outputs.branch }}
+
+      - name: Update version
+        run: npm run lerna-version 
 
       - uses: actions/github-script@v4
         with:
