@@ -80,7 +80,7 @@ jobs:
       - run: npm run bootstrap
 
       - name: Update version
-        run: npm run lerna-version -- --no-git-tag-version --no-push
+        run: npm run lerna-version -- --no-push
 
       - name: Push to GitHub
         id: push
@@ -106,5 +106,6 @@ jobs:
               repo: context.repo.repo,
               head: "${{ steps.push.outputs.branch }}",
               base: 'main',
+              title: 'New release',
               body: 'new version release'
             })
