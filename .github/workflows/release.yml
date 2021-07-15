@@ -45,67 +45,137 @@
 #         env:
 #           NODE_AUTH_TOKEN: ${{ secrets.PUBLISH_GITHUB_TOKEN }}
 
+# name: Release
+
+# on:
+#   workflow_dispatch:
+
+
+# jobs:
+#   git-version:
+#     name: Create git tag and commit
+#     runs-on: ubuntu-latest
+#     outputs:
+#       branch: ${{ steps.push.outputs.branch }}
+#       version: ${{ steps.new_version.outputs.branch }}
+#     steps:
+#       - uses: actions/checkout@v2
+#         with:
+#           fetch-depth: 0
+
+#       - uses: actions/setup-node@v2
+#         with:
+#           node-version: 14
+#           registry-url: https://registry.npmjs.org/
+
+#       - name: Set a committer
+#         run: |
+#           git config user.name "Github Actions Runner"
+#           git config user.email "aleksandr.elkin+ci@tradeshift.com"
+
+#       - name: Install dependencies
+#         run: npm ci
+
+#       - run: npm run bootstrap
+
+#       - name: Update version
+#         id: new_version
+#         run: |
+#           branch="release/$(git describe --abbrev=0)"
+#           echo $branch
+#           echo "::set-output name=branch::$branch"
+#           git push "https://aleks-elkin:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" HEAD:"$branch" --follow-tags
+
+#       - name: Push to GitHub
+#         id: push
+#         run: |
+#           branch="release/$(git describe --abbrev=0)"
+#           echo $branch
+#           echo "::set-output name=branch::$branch"
+#           git push "https://aleks-elkin:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" HEAD:"$branch" --follow-tags
+
+#       - uses: actions/checkout@v2
+#         with:
+#           fetch-depth: 0
+#           ref: ${{ steps.push.outputs.branch }}
+
+#       - name: Update version
+#         run: npm run lerna-version 
+
+#       - uses: actions/github-script@v4
+#         with:
+#           script: |
+#             github.pulls.create({
+#               owner: context.repo.owner,
+#               repo: context.repo.repo,
+#               head: "${{ steps.push.outputs.branch }}",
+#               base: 'main',
+#               title: 'New release',
+#               body: 'new version release'
+#             })
+
+
 name: Release
 
 on:
-  push:
-    tags: ["v*"]
   workflow_dispatch:
 
-
 jobs:
-  git-version:
-    name: Create git tag and commit
+  createPullRequest:
     runs-on: ubuntu-latest
-    outputs:
-      branch: ${{ steps.push.outputs.branch }}
     steps:
-      - uses: actions/checkout@v2
+      - name: Checkout
+        uses: actions/checkout@v2
         with:
           fetch-depth: 0
 
-      - uses: actions/setup-node@v2
+      - name: Setup Node.js
+        uses: actions/setup-node@v2
         with:
           node-version: 14
           registry-url: https://registry.npmjs.org/
-
-      - name: Set a committer
-        run: |
-          git config user.name "Github Actions Runner"
-          git config user.email "aleksandr.elkin+ci@tradeshift.com"
 
       - name: Install dependencies
         run: npm ci
 
       - run: npm run bootstrap
 
-      - name: Update version
-        run: npm run lerna-version -- --no-push
-
-      - name: Push to GitHub
-        id: push
+      - name: Set a committer
         run: |
-          branch="release/$(git describe --abbrev=0)"
-          echo $branch
-          echo "::set-output name=branch::$branch"
-          git push "https://aleks-elkin:${{ secrets.GITHUB_TOKEN }}@github.com/${GITHUB_REPOSITORY}.git" HEAD:"$branch" --follow-tags
-
-      - uses: actions/checkout@v2
+          git config --global user.name 'aleks-elkin'
+          git config --global user.email 'asleks-elkin@users.noreply.github.com'
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  
+      - name: Commit new version
+        run: |
+          npm run lerna-version
+          git add . && git commit -m \"chore(release): publish `node -p 'require(\"./lerna.json\").version'`\"
+      - name: Set current CHANGELOG to output
+        id: changelog
+        shell: bash -ex {0}
+        run: |
+          version=$(node -p 'require("./lerna.json").version')
+          echo "::set-output name=version::${version}"
+      - name: Create Pull Request
+        id: cpr
+        uses: peter-evans/create-pull-request@v2
         with:
-          fetch-depth: 0
-          ref: ${{ steps.push.outputs.branch }}
+          token: ${{ secrets.GITHUB_TOKEN }}
+          commit-message: "Update v${{ steps.changelog.outputs.version }}"
+          committer: GitHub <noreply@github.com>
+          author: "${{ github.actor }} <${{ github.actor }}@users.noreply.github.com>"
+          title: 'v${{ steps.changelog.outputs.version }}'
+          body: |
+            ## v${{ steps.changelog.outputs.version }}
+          labels: "Type: Release"
+          branch: "release/next"
+          request-to-parent: false
+      - name: Check outputs
+        run: |
+          echo "Pull Request Number - ${{ env.PULL_REQUEST_NUMBER }}"
+          echo "Pull Request Number - ${{ steps.cpr.outputs.pr_number }}"
 
-      - name: Update version
-        run: npm run lerna-version 
 
-      - uses: actions/github-script@v4
-        with:
-          script: |
-            github.pulls.create({
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              head: "${{ steps.push.outputs.branch }}",
-              base: 'main',
-              title: 'New release',
-              body: 'new version release'
-            })
+
+    
