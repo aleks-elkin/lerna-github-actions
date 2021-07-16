@@ -11,7 +11,7 @@ on:
 
 jobs:
   publish:
-    if: "startsWith(github.event.head_commit.message, 'chore(release):')"
+    if: "contains(github.event.commits[0].message, 'chore(release):')"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
