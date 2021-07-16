@@ -11,7 +11,7 @@ on:
 
 jobs:
   publish:
-    if: "contains(github.event.head_commit.author.name, 'Github Actions Runner')"
+    if: "startsWith(github.event.head_commit.message, 'chore(release):')"
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
@@ -22,6 +22,7 @@ jobs:
         with:
           node-version: 14
           registry-url: https://registry.npmjs.org/
+
       - name: Configure Git User
         run: |
           git config --global user.email "aleksandr.elkin+ci@tradeshift.com"
@@ -46,4 +47,4 @@ jobs:
           scope: '@aleks-elkin'
       - run: npm run lerna-publish-ci
         env:
-          NODE_AUTH_TOKEN: ${{ secrets.PUBLISH_GITHUB_TOKEN }}
+          NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
