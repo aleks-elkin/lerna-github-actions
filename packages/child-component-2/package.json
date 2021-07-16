@@ -5,7 +5,7 @@
     "url": "https://github.com/aleks-elkin/lerna-github-actions.git",
     "directory": "packages/child-component-2"
   },
-  "version": "0.25.0",
+  "version": "0.26.0",
   "description": "> TODO: description",
   "author": "Aleksandr Elkin <aleksandr.elkin@tradeshift.com>",
   "homepage": "",
