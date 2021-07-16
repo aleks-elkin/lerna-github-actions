@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: CI build
 
 # Controls when the action will run.
 on:
@@ -8,13 +8,9 @@ on:
   push:
     branches: 
       - main
-      - '!releases/v**'
-      - '!releases/next'
   pull_request:
     branches:
       - main
-      - '!releases/v**'
-      - '!releases/next'
 
   # Allows you to run this workflow manually from the Actions tab
   workflow_dispatch:
@@ -30,6 +26,14 @@ jobs:
     steps:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+          token: ${{ secrets.GITHUB_TOKEN }}
+      - uses: actions/setup-node@v2
+        with:
+          node-version: 14
+          registry-url: https://registry.npmjs.org/
+          cache: npm
 
       - name: install deps
         run: npm ci
