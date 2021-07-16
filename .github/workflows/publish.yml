@@ -41,7 +41,7 @@ jobs:
           cache: npm
           scope: '@aleks-elkin'
 
-      - name: Publish to Github Packahes
+      - name: Publish to Github Packages
         run: npm run lerna-publish-ci
         env:
           NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
