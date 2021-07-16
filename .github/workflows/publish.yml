@@ -30,9 +30,13 @@ jobs:
       #     git config --global user.name "Github Actions Runner"
       - name: Install dependencies
         run: npm ci
-      - run: npm run bootstrap
+
+      - name: bootstrap monorepo
+        run: npm run bootstrap
+
       - name: Build
         run: npm run build
+
       # - name: Update version
       #   run: npm run lerna-version
         env:
