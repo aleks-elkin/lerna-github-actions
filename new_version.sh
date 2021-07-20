@@ -1,8 +1,9 @@
 #!/bin/sh
 
+latest_release="$(git describe --abbrev=0)"
+
 npm run lerna-version
 version="v$(node -p 'require("./lerna.json").version')"
-latest_release="$(git describe --abbrev=0)"
 
 if [ $latest_release = $version ]
 then
