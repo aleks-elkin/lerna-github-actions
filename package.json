@@ -19,7 +19,7 @@
     "bootstrap": "lerna bootstrap",
     "build": "lerna run tsc",
     "lerna-publish-ci": "lerna publish from-package --no-verify-access",
-		"lerna-version": "lerna version --conventional-commits --yes",
+		"lerna-version": "lerna version --conventional-commits --yes --no-git-tag-version --no-push",
 		"version-script": "sh new_version.sh",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
