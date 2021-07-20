@@ -2,9 +2,9 @@
 
 npm run lerna-version
 version="v$(node -p 'require("./lerna.json").version')"
-latest_release="release/$(git describe --abbrev=0)"
+latest_release="$(git describe --abbrev=0)"
 
-if ($latest_release == $version)
+if [ $latest_release = $version ]
 then
 	echo "No new version. Exit."
 else
@@ -12,6 +12,6 @@ else
 	git checkout -b $branch
 	git add .
 	git commit -m "chore(release): $version"
-	git tag $version
 	git push origin $branch
+	git push origin --tags
 fi
