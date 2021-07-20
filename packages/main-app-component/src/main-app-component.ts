@@ -13,8 +13,8 @@ export class MainComponent {
 	}
 	
 	constructor() {
-		this.childComponent3 = new ChildComponent3(this.internalId);
 		this.childComponent1 = new ChildComponent1(this.internalId);
+		this.childComponent3 = new ChildComponent3(this.internalId);
 		this.childComponent2 = new ChildComponent2(this.internalId);
 	}
 }
