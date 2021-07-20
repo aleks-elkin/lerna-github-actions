@@ -12,6 +12,6 @@ else
 	git checkout -b $branch
 	git add .
 	git commit -m "chore(release): $version"
-	git push origin $branch
+	git push --set-upstream origin $branch
 	git push origin --tags
 fi
