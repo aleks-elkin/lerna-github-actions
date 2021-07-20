@@ -1,12 +1,15 @@
 #!/bin/sh
 
 npm run lerna-version
-version=$(node -p 'require("./lerna.json").version')
+version="v$(node -p 'require("./lerna.json").version')"
+latest_release="release/$(git describe --abbrev=0)"
 
-branch="release/$version"
-
-git checkout -b $branch
-
-git add . && git commit -m "chore(release): $version"
-
-git push origin $branch
+if ($latest_release == $version)
+then
+	echo 'No new version. Exit.'
+else
+	branch="release/$version"
+	git checkout -b $branch
+	git add . && git commit -m "chore(release): $version"
+	git push origin $branch
+fi
