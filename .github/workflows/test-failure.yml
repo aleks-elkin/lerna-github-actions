@@ -24,6 +24,6 @@ jobs:
   job_report_on_failure:
     runs-on: ubuntu-latest
     needs: [job_always_green, job_will_be_skipped]
-    if: failure()
+    if: failure('job_will_be_skipped')
     steps:
       - run: echo "This will run when there is a failure only at job_will_be_skipped"
