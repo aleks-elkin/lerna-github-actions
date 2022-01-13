@@ -1,0 +1,29 @@
+on:
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  job_always_green:
+    runs-on: ubuntu-latest
+    outputs:
+      truthy_string: ${{ steps.a.outputs.always }}
+      null_value: ${{ steps.b.outputs.never }}
+    steps:
+        - run: echo "This one just runs with success"
+  job_always_fail:
+    runs-on: ubuntu-latest
+    needs: job_always_green
+    steps:
+      - run: exit 1
+  job_will_be_skipped:
+    runs-on: ubuntu-latest
+    needs: [job_always_green, job_always_fail]
+    steps:
+      - run: echo "This won't run, because job_always_fail failed."
+  job_report_on_failure:
+    runs-on: ubuntu-latest
+    needs: [job_always_green, job_will_be_skipped]
+    if: failure()
+    steps:
+      - run: echo "This will run when there is a failure only at job_will_be_skipped"
